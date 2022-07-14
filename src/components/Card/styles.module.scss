@@ -1,0 +1,163 @@
+.columnContainer {
+    .mainContainer {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 1rem;
+        overflow-y: auto;
+        overflow-x: hidden;
+        height: 70vh;
+
+        &::-webkit-scrollbar {
+            width: 7px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: var(--red);
+            border-radius: 5px;
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+            background: var(--fighting);
+        }
+
+        .cardContainer {
+            display: flex;
+            flex-direction: column;
+
+            margin-bottom: 3rem;
+
+            .card {
+                background-color: var(--grayLight);
+                width: 200px;
+                height: 200px;
+                border-radius: 7px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                img {
+                    width: 200px;
+                    height: 200px;
+                }
+            }
+
+            .cardInfo {
+                display: flex;
+                flex-direction: column;
+                margin-top: 1rem;
+                padding-left: 0.5rem;
+
+                .nationalNumber {
+                    color: var(--grayDark);
+                    font-size: 1rem;
+                }
+
+                h3 {
+                    margin-top: 0.2rem;
+                }
+
+                .types {
+                    margin-top: 1rem;
+
+                    span {
+                        padding: 8px;
+                        border-radius: 5px;
+
+                        &+span {
+                            margin-left: 0.5rem;
+                        }
+                    }
+                }
+            }
+        }
+
+        .Grass {
+            background-color: var(--grass);
+        }
+
+        .Fire {
+            background-color: var(--fire);
+            color: var(--white);
+        }
+
+        .Poison {
+            background-color: var(--poison);
+            color: var(--white);
+        }
+
+        .Normal {
+            background-color: var(--normal);
+            color: var(--white);
+        }
+
+        .Water {
+            background-color: var(--water);
+            color: var(--white);
+        }
+
+        .Ice {
+            background-color: var(--ice);
+            color: var(--white);
+        }
+
+        .Ground {
+            background-color: var(--ground);
+            color: var(--white);
+        }
+
+        .Flying {
+            background-color: var(--flying);
+            color: var(--white);
+        }
+
+        .Bug {
+            background-color: var(--bug);
+            color: var(--white);
+        }
+
+        .Rock {
+            background-color: var(--rock);
+            color: var(--white);
+        }
+
+        .Ghost {
+            background-color: var(--ghost);
+            color: var(--white);
+        }
+
+        .Dragon {
+            background-color: var(--dragon);
+            color: var(--white);
+        }
+
+        .Steel {
+            background-color: var(--steel);
+            color: var(--white);
+        }
+
+        .Fairy {
+            background-color: var(--fairy);
+            color: var(--white);
+        }
+
+        .Psychic {
+            background-color: var(--psychic);
+            color: var(--white);
+        }
+
+        .Electric {
+            background-color: var(--electric);
+            color: var(--white);
+        }
+
+        .Fighting {
+            background-color: var(--fighting);
+            color: var(--white);
+        }
+
+        .Dark {
+            background-color: var(--dark);
+            color: var(--white);
+        }
+    }
+}
