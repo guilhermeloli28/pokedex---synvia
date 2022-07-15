@@ -1,15 +1,6 @@
 
 ![pokedex123](https://user-images.githubusercontent.com/46009742/179275617-5076930a-8203-47a9-949f-e6640beb6a90.png)
 
-<p align="center">
-  <a href="#page_facing_up-descrição">Descrição</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#clipboard-Funcionalidades">Funcionalidades</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#closed_book-instalação">Instalação</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#man-Autor">Autor</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#memo-Licença">Licença</a>
-</p>
-
 ## :page_facing_up: Descrição
 Listagem e consulta de pokemons
 
