@@ -1,3 +1,5 @@
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
 import { usePokemon } from '../../context/PokemonContext';
 import styles from './styles.module.scss';
@@ -5,11 +7,20 @@ import styles from './styles.module.scss';
 export function Filter() {
   const { pokemonTypes } = usePokemon();
   const [typeSelected, setTypeSelected] = useState('');
-  const { getPokemons, handleSetSelectedType, filterByType } = usePokemon();
+  const {
+    getPokemons,
+    handleSetSelectedType,
+    filterByType,
+    handleSetFilterByFavorite,
+    isFavorite,
+  } = usePokemon();
 
   useEffect(() => {
-    if (typeSelected !== '') filterByType(typeSelected);
-    else getPokemons();
+    if (!isFavorite) {
+      if (typeSelected !== '') filterByType(typeSelected);
+      else getPokemons();
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [typeSelected]);
 
@@ -38,6 +49,15 @@ export function Filter() {
             }
           >
             {poke}
+            {poke === typeSelected && (
+              <FontAwesomeIcon
+                icon={faCheck}
+                cursor='pointer'
+                size='1x'
+                color='white'
+                className={styles.iconCheck}
+              />
+            )}
           </button>
         ))}
       </div>
@@ -49,7 +69,7 @@ export function Filter() {
           <input type='checkbox' />
           <span
             className={styles.toggleSwitch}
-            // onClick={setFilterByFavorite}
+            onClick={() => handleSetFilterByFavorite()}
           ></span>
         </label>
       </div>

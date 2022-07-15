@@ -14,7 +14,6 @@ function App() {
         <Search />
         <div className={styles.main}>
           <Filter />
-
           <Card />
         </div>
       </div>

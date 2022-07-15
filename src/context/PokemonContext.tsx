@@ -20,6 +20,7 @@ interface PokemonList {
     large: string;
     animated: string;
   };
+  isFavorite: boolean;
 }
 
 interface PokemonContextProps {
@@ -31,6 +32,11 @@ interface PokemonContextProps {
   handleSetSelectedType: (type: string) => void;
   selectedType: string;
   filterByType: (value: string) => void;
+  setFavoritePokemon: (pokemon: PokemonList) => void;
+  favoriteList: PokemonList[];
+  handleSetFilterByFavorite: () => void;
+  isFavorite: boolean;
+  filterByNumber: (value: string) => void;
 }
 
 export const PokemonContext = createContext({} as PokemonContextProps);
@@ -39,6 +45,9 @@ export const PokemonProvider = ({ children }: PokemonProps) => {
   const [pokemonList, setPokemonList] = useState<PokemonList[]>([]);
   const [pokemonTypes, setPokemonTypes] = useState<string[]>([]);
   const [selectedType, setSelectedType] = useState('');
+  const [favoriteList, setFavoriteList] = useState<PokemonList[]>([]);
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [optionOrder, setOptionOrder] = useState('1');
 
   const handleSetPokemonList = useCallback((newPokemonList: PokemonList[]) => {
     setPokemonList(newPokemonList);
@@ -46,6 +55,10 @@ export const PokemonProvider = ({ children }: PokemonProps) => {
 
   const handleSetSelectedType = useCallback((type: string) => {
     setSelectedType(type);
+  }, []);
+
+  const handleSetFilterByFavorite = useCallback(() => {
+    setIsFavorite((prevState) => !prevState);
   }, []);
 
   const getPokemons = async () => {
@@ -89,11 +102,49 @@ export const PokemonProvider = ({ children }: PokemonProps) => {
     );
 
     const pokemonsFiltered = removeDuplicate(response.data.results);
+
     const pokemonsFilteredByType = pokemonsFiltered.filter(({ type }) =>
       type.includes(value)
     );
     setPokemonList(pokemonsFilteredByType);
   }, []);
+
+  function setFavoritePokemon(pokemon: PokemonList) {
+    const changePokemonArray = pokemonList.map((poke) => {
+      if (poke.national_number === pokemon.national_number) {
+        poke.isFavorite = !poke.isFavorite;
+      }
+      return poke;
+    });
+    const favoritePokemons = changePokemonArray.filter(
+      (pokemon) => pokemon.isFavorite
+    );
+    setFavoriteList(favoritePokemons);
+    setPokemonList(changePokemonArray);
+  }
+
+  function filterByNumber(value: string) {
+    if (value === '2') {
+      const newPokemonList = pokemonList.sort((a, b) => {
+        return Number(a.national_number) < Number(b.national_number)
+          ? 1
+          : Number(a.national_number) > Number(b.national_number)
+          ? -1
+          : 0;
+      });
+      setPokemonList(newPokemonList);
+    } else {
+      const newPokemonList = pokemonList.sort((a, b) => {
+        return Number(a.national_number) > Number(b.national_number)
+          ? 1
+          : Number(a.national_number) < Number(b.national_number)
+          ? -1
+          : 0;
+      });
+      setPokemonList(newPokemonList);
+    }
+    setOptionOrder(value);
+  }
 
   return (
     <PokemonContext.Provider
@@ -103,9 +154,14 @@ export const PokemonProvider = ({ children }: PokemonProps) => {
         getPokemons,
         handleSetPokemonList,
         handleSetSelectedType,
+        handleSetFilterByFavorite,
         removeDuplicate,
         selectedType,
         filterByType,
+        setFavoritePokemon,
+        favoriteList,
+        isFavorite,
+        filterByNumber,
       }}
     >
       {children}

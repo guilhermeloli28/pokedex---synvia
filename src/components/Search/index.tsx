@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './styles.module.scss';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { usePokemon } from '../../context/PokemonContext';
 import axios from 'axios';
 
@@ -13,6 +13,7 @@ export function Search() {
     removeDuplicate,
     handleSetPokemonList,
     selectedType,
+    filterByNumber,
   } = usePokemon();
 
   const filterBySearch = useCallback(async () => {
@@ -32,14 +33,12 @@ export function Search() {
 
   useEffect(() => {
     if (search.length >= 2) filterBySearch();
-    else if (selectedType === '') {
-      getPokemons();
-    } else if (selectedType) {
+    else if (selectedType) {
       filterByType(selectedType);
-    }
+    } else getPokemons();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [search, filterBySearch, getPokemons]);
+  }, [search]);
 
   return (
     <div className={styles.mainContainer}>
@@ -61,7 +60,10 @@ export function Search() {
 
         <div className={styles.orderContainer}>
           <span>Ordenar por</span>
-          <select>
+          <select
+            defaultValue={'1'}
+            onChange={(e) => filterByNumber(e.target.value)}
+          >
             <option value='1'>Menor número primeiro</option>
             <option value='2'>Maior número primeiro</option>
           </select>

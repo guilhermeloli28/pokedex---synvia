@@ -1,4 +1,6 @@
 .columnContainer {
+    margin-left: auto;
+
     .mainContainer {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
@@ -23,21 +25,47 @@
         .cardContainer {
             display: flex;
             flex-direction: column;
-
             margin-bottom: 3rem;
 
             .card {
-                background-color: var(--grayLight);
                 width: 200px;
                 height: 200px;
                 border-radius: 7px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                position: relative;
 
                 img {
-                    width: 200px;
-                    height: 200px;
+                    width: 150px;
+                    height: 150px;
+                }
+
+                &:hover {
+                    .iconHeart {
+                        opacity: initial;
+                    }
+                }
+                
+                .iconHeart {
+                    position: absolute;
+                    right: 10px;
+                    top: 10px;
+                    color: var(--white);
+                    stroke: var(--red);
+                    stroke-width: 30;
+                    font-size: 1.5rem;
+                    opacity: 0;
+                }
+
+                .iconHeartSelected {
+                    position: absolute;
+                    right: 10px;
+                    top: 10px;
+                    color: var(--red);
+                    stroke: var(--red);
+                    font-size: 1.5rem;
+                    stroke-width: 30;
                 }
             }
 
@@ -159,5 +187,14 @@
             background-color: var(--dark);
             color: var(--white);
         }
+    }
+}
+
+.dontHaveFavorite {
+    display: flex;
+    margin-left: 10rem;
+
+    h3 {
+        margin-left: 1rem;
     }
 }

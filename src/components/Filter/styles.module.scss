@@ -25,6 +25,9 @@
             color: var(--red);
             background-color: var(--white);
             padding: 8px 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
             &:hover {
                 background-color: var(--red);
@@ -38,6 +41,12 @@
             color: var(--white);
             background-color: var(--red);
             padding: 8px 10px;
+            display: flex;
+            align-items: center;
+            
+            .iconCheck {
+                margin-left: 6px;
+            }
         }
     }
 
