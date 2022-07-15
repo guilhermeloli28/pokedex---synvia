@@ -30,7 +30,7 @@ $ https://github.com/guilhermeloli28/pokedex---synvia
 $ cd pokedex
 # Instale as dependências
 $ yarn install
-# Execute aplicação
+# Execute a aplicação
 yarn start
 # Para acessar a aplicação, acesse: http://localhost:3000
 ```
